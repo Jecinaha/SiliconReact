@@ -8,25 +8,27 @@ import Brand6 from '../assets/images/brand6.svg'
 
 const Brands = () => {
   return (
-    <div className="brands container">
-    <div id="brand-1" className="brand-box">
-        <img src={Brand1} alt="Logotype brand1"/>
-    </div>
-    <div id="brand-2" className="brand-box">
-        <img src={Brand2} alt="Logotype brand2"/>
-    </div>
-    <div id="brand-3" className="brand-box">
-        <img src={Brand3} alt="Logotype brand3"/>
-    </div>
-    <div id="brand-4" className="brand-box">
-        <img src={Brand4} alt="Logotype brand4"/>
-    </div>
-    <div id="brand-5" className="brand-box">
-        <img src={Brand5} alt="Logotype brand5"/>
-    </div>
-    <div id="brand-6" className="brand-box">
-        <img src={Brand6} alt="Logotype brand6"/>
-    </div>    
+    <div id="brands">
+        <div className='container'>
+            <div id="brand-1" className="brand-box">
+                <img src={Brand1} alt="Logotype brand1"/>
+            </div>
+            <div id="brand-2" className="brand-box">
+                <img src={Brand2} alt="Logotype brand2"/>
+            </div>
+            <div id="brand-3" className="brand-box">
+                <img src={Brand3} alt="Logotype brand3"/>
+            </div>
+            <div id="brand-4" className="brand-box">
+                <img src={Brand4} alt="Logotype brand4"/>
+            </div>
+            <div id="brand-5" className="brand-box">
+                <img src={Brand5} alt="Logotype brand5"/>
+            </div>
+            <div id="brand-6" className="brand-box">
+                <img src={Brand6} alt="Logotype brand6"/>
+            </div>    
+        </div>
 </div>
 
   )

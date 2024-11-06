@@ -1,34 +1,36 @@
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import './assets/css/main.css'
+import Home from './pages/Home'
+import About from './pages/About'
+import ContactUs from './pages/ContactUs'
+import Features from './pages/Features'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Brands from './components/Brands'
-import Features from './components/Features'
-import Works from './components/Works'
-import Money from './components/Money'
-import Clients from './components/Clients'
-import Faq from './components/Faq'
-import Subscribe from './components/Subscribe'
 import Footer from './components/Footer'
 
 
-function App() {
 
+function App() {
   return (
-    <div ClassName="wrapper">
-      <Header/>
+    <BrowserRouter>
+    <div className="wrapper">
+      <div className="bg-secondary">
+      <Header />
+          </div>
       <main>
-        <Hero/>
-        <Brands/>
-        <Features/>
-        <Works/>
-        <Money/>
-        <Clients/>
-        <Faq/>
-        <Subscribe/>
-      </main>
-      <Footer/>
+        <Routes>
+         <Route path="/" element={<Home />} />
+         <Route path="/about" element={<About />} />
+         <Route path="/contact-us" element={<ContactUs />} />
+         <Route path="/features" element={<Features />} />
+       </Routes>
+      </main> 
+      <Footer />
     </div>
+    </BrowserRouter>
+ 
   )
 }
+
+
 
 export default App
