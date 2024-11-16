@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Hero from '../components/Hero.jsx'
 import Brands from '../components/Brands.jsx'
 import Features from '../components/Features.jsx'
@@ -12,7 +12,7 @@ import Subscribe from '../components/Subscribe.jsx'
 function Home() {
   return (
     <>
-        <div className="bg-secondary">
+        <div className="background">
             <Hero />
         </div>
             <Brands />
@@ -22,7 +22,6 @@ function Home() {
             <Clients />
             <Faq  />
             <Subscribe />
-           
     </>
     
   )

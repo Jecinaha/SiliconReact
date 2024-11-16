@@ -1,10 +1,81 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import phone from '../assets/images/phone.svg'
 import message from '../assets/images/message.svg'
+import Questions from './Questions'
+import { Link } from 'react-router-dom'
 
 
+
+/* Script för att öppna accordion som behöver fixas till så att det fungerar i React
+var questionButtons = document.querySelectorAll(".question-button");
+var i;
+
+for (i = 0; i < questionButtons.length; i++) {
+  questionButtons[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.parentElement.nextElementSibling;
+    
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.display = "block";
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+} */
+
+  const Accordion = () => {
+    const [activeIndex, setActiveIndex] = useState(null);
+  
+    const handleClick = (index) => {
+      setActiveIndex(activeIndex === index ? null : index); // Toggle active panel
+    };
+  
+    return (
+      <div className="accordion">
+        {questionButtons.map((button, index) => (
+          <div key={index}>
+            <button
+              className={`question-button ${activeIndex === index ? 'active' : ''}`}
+              onClick={() => handleClick(index)}
+            >
+              {button.label}
+            </button>
+            <div
+              className="panel"
+              style={{
+                display: activeIndex === index ? 'block' : 'none',
+                maxHeight: activeIndex === index ? `${document.getElementById(`panel-${index}`).scrollHeight}px` : '0',
+                overflow: 'hidden',
+                transition: 'max-height 0.3s ease-out'
+              }}
+              id={`panel-${index}`}
+            >
+              {button.content}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
 const Faq = () => {
+    const [accordions, setAccordions] = useState ([])
+
+    const fetchAccordions = async () => {
+      const res = await fetch ('https://win24-assignment.azurewebsites.net/api/faq')
+      const data = await res.json()
+      setAccordions(data)
+      
+    }
+
+    useEffect(() => {
+        fetchAccordions()
+
+    }, [])
+
+
   return (
     <div id="faq">
         <div className="container">
@@ -32,85 +103,13 @@ const Faq = () => {
             </div>
 
             <div className="group-questions">
-                <div className="questions">
-                    <div className="questions-header">
-                        <span className="question-text">Is any of my personal information stored in the App?</span>
-                        <button className="question-button btn-circle">
-                        <i className="fa-solid fa-chevron-down"></i>
-                        </button>
-                    </div>
-                    <div className="panel">
-                    <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                    <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                    </div>
-                </div>
-        
-                <div className="questions">
-                    <div className="questions-header">
-                        <span className="question-text">What formats can I download my transaction history in?</span>
-                        <button className="question-button btn-circle">
-                        <i className="fa-solid fa-chevron-down"></i>
-                        </button>
-                    </div>
-                    <div className="panel">
-                        <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                        <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                        </div>
-                </div>
-
-                <div className="questions">
-                <div className="questions-header">
-                    <span className="question-text">Can I schedule future transfers?</span>
-                    <button className="question-button btn-circle">
-                            <i className="fa-solid fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div className="panel">
-                    <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                    <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                </div>
-                </div>
-
-                <div className="questions">
-                <div className="questions-header">
-                    <span className="question-text">When can I use Banking App services?</span>
-                    <button className="question-button btn-circle">
-                            <i className="fa-solid fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div className="panel">
-                    <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                    <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                </div>
-                </div>
-
-                <div className="questions">
-                <div className="questions-header">
-                    <span className="question-text">Can I create my own password that is easy for me to remember?</span>
-                    <button className="question-button btn-circle">
-                            <i className="fa-solid fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div className="panel">
-                    <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                    <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                </div>
-               </div>
-
-                <div className="questions">
-                <div className="questions-header">
-                    <span className="question-text">What happens if I forget or lose my password?</span>
-                    <button className="question-button btn-circle">
-                            <i className="fa-solid fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div className="panel">
-                    <p className="text">Nunc duis id aenean gravida tincidunt eu, tempor ullamcorper. Viverra aliquam arcu, viverra et, cursus. Aliquet pretium cursus adipiscing gravida et consequat lobortis arcu velit. Nibh pharetra fermentum duis accumsan lectus non. Massa cursus molestie lorem scelerisque pellentesque. Nisi, enim, arcu purus gravida adipiscing euismod montes, duis egestas. Vehicula eu etiam quam tristique tincidunt suspendisse ut consequat.</p>
-                    <p className="text">Ornare senectus fusce dignissim ut. Integer consequat in eu tortor, faucibus et lacinia posuere. Turpis sit viverra lorem suspendisse lacus aliquam auctor vulputate. Quis egestas aliquam nunc purus lacus, elit leo elit facilisi. Dignissim amet adipiscing massa integer.</p>
-                </div>
-               </div>
+                {
+                      accordions.map(item => (
+                        <Questions key={item.id} item={item} />
+                    ))
+                }
             </div>
-        <button className="btn btn-contact-us">Contact us now</button>
+        <button className="btn btn-contact-us"><Link className="contact-link" to="/Contact">Contact us now</Link></button>
     </div>
 </div>
 

@@ -4,6 +4,16 @@ import googlePlay from '../assets/images/googleplay.svg'
 import iphoneBack from '../assets/images/iphone-back_desktop.svg'
 import iphoneFront from '../assets/images/iphone-front_desktop.svg'
 import '../assets/css/main.css'
+import { Link } from 'react-router-dom'
+
+function discoverMoreClicked() {
+    var featuresSection = document.querySelector("#features");
+    window.scrollTo({
+        top: featuresSection.offsetTop,
+        left: 0,
+        behavior: "smooth",
+    });
+}
 
 const Hero = () => {
   return (
@@ -16,15 +26,15 @@ const Hero = () => {
         <div className="content text">
             <p>We offer you a new generation of the mobile banking. Save, spend & manage money in your pocket.</p>
             <div className="buttons">
-            <a className="btn-download-app" href="#"><img src={appStore} alt="Appstore"/></a>
-            <a className="btn-download-app" href="#"><img src={googlePlay} alt="Google play"/></a>
+            <Link className="btn-download-app" to="https://www.apple.com/se/app-store/"><img src={appStore} alt="Appstore"/></Link>
+            <Link className="btn-download-app" to="https://play.google.com/store/games?device=windows"><img src={googlePlay} alt="Google play"/></Link>
             </div>
-            <a href="#" className="discover-more" id="discover-more">
-                <span className="btn-circle">
+            <div className="discover-more" id="discover-more">
+                <button className="btn-circle" onClick={discoverMoreClicked}>
                     <i className="fa-solid fa-chevron-down"></i>
-                </span>
+                </button>
                 <span className="more text">Discover more</span>
-            </a>    
+            </div>    
         </div>
         <div className="images">
             <img className="img-back" src={iphoneBack} alt="iPhone back my budget"/>

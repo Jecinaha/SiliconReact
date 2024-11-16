@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import sendMoney from '../assets/images/sendmoney.svg'
 import Contacts from '../assets/images/contacts.svg'
-import creditCard from '../assets/images/creditcard.svg'
-import wallet from '../assets/images/wallet.svg'
+import Payments from './Payments'
+import MoneyText from './MoneyText'
 
 
 const Money = () => {
+    const [payments, setPayments] = useState ([
+        {className: "creditcard", imageUrl: "./images/money/creditcard.svg", imageAlt: "Credit card", text: "Manage your payments online. Mollis congue egestas egestas fermentum fames."},
+        {className: "wallet", imageUrl: "./images/money/wallet.svg", imageAlt: "Wallet", text: "A elementur and imperdiet enim, pretium etiam facilisi aenean quam mauris."}
+    ])
+    const [moneyText, setMoneytext] = useState ([
+        {text: "Banking transactions are free for you"},
+        {text: "No monthly cash commission"},
+        {text: "Manages payments and transactions online"}
+    ])
+
+    
   return (
     <div id="money">
         <div className="container">
@@ -14,21 +25,10 @@ const Money = () => {
                 <h2 className="makemoney heading">Make your money transfer simple and clear</h2>
 
                 <ul className="moneytext">
-                    <li>
-                        <i className="fa-light fa-circle-check"></i>
-                        <p className="text"> Banking transactions are free for you</p>
-                    </li>
-                        
-                    <li>
-                        <i className="fa-light fa-circle-check"></i>
-                        <p className="text">No monthly cash commission</p> 
-                    </li>
-                            
-                    <li>
-                        <i className="fa-light fa-circle-check"></i>
-                        <p className="text">Manages payments and transactions online</p> 
-                   </li>
-              </ul>
+                    {
+                     moneyText.map((item, index) => (<MoneyText key={index} item={item} />))
+                    } 
+                </ul>
               
               <button className="btn btn-primary"> Learn More 
                 <i className="fa-solid fa-arrow-right"></i>
@@ -46,15 +46,9 @@ const Money = () => {
                 <div className="payment">
                     <h2 className="receivepayment heading">Receive payment from international bank details </h2>
                     <ul className="icons">
-                        <li className="creditcard">
-                            <img src={creditCard} alt="creditcard"/>
-                            <p className="manage text"> Manage your payments online. Mollis congue egestas egestas fermentum fames.</p>
-                        </li>
-                            
-                        <li className="wallet">
-                            <img src={wallet} alt="wallet"/>
-                            <p className="elementur text">A elementur and imperdiet enim, pretium etiam facilisi aenean quam mauris.</p>
-                        </li>
+                        {
+                            payments.map((item, index) => (<Payments key={index} item={item} />))   
+                        }
                     </ul>
                     
                     <button className="btn btn-primary"> Learn More 

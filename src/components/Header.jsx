@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import siliconLogo from '../assets/images/siliconlogo.svg'
 import { Link, NavLink } from 'react-router-dom'
+import DarkMode from '../components/DarkModeSwitch.jsx'
+
+
 
 const Header = () => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+ // function onButtonClicked
+
   return (
     <header>
         <div className="container">
@@ -13,22 +20,26 @@ const Header = () => {
         
             <nav className="navbar">
                 <NavLink className="nav-link" to="/Features">Features</NavLink>
-                <NavLink className="nav-link" href='/Contact us'>Contact us</NavLink>
+                <NavLink className="nav-link" to='/Contact'>Contact us</NavLink>
             </nav>
 
-            <div id='darkModeToggleWwitch' className="btn-toggle-switch">
-                <span className="label">Dark mode</span>
-                <label htmlFor="darkmode-switch" className="toggle-switch">
-                    <input id="darkmode-switch" type="checkbox"/>
-                    <span className="slider round"></span>
-                </label>
-            </div>
+            {showMobileMenu && (
+              <div>
 
-            <a id="signinup" href="#" className="btn btn-primary">
+              </div>
+            )}
+
+            <DarkMode />
+
+        
+            
+         
+
+            <Link id="signinup" to="/SignIn" className="btn btn-primary">
             <i className="fa-thin fa-user"></i>
-            <span className="span-btn">Sign in / up</span></a>
+            <span className="span-btn">Sign in / up</span></Link>
 
-            <button className="btn-mobile">
+            <button className="btn-mobile" /*onClick={}*/ >
                 <i className="fa-regular fa-bars"></i>
             </button>
         </div>
