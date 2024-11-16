@@ -4,62 +4,6 @@ import message from '../assets/images/message.svg'
 import Questions from './Questions'
 import { Link } from 'react-router-dom'
 
-
-
-/* Script för att öppna accordion som behöver fixas till så att det fungerar i React
-var questionButtons = document.querySelectorAll(".question-button");
-var i;
-
-for (i = 0; i < questionButtons.length; i++) {
-  questionButtons[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.parentElement.nextElementSibling;
-    
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.display = "block";
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-} */
-
-  const Accordion = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
-  
-    const handleClick = (index) => {
-      setActiveIndex(activeIndex === index ? null : index); // Toggle active panel
-    };
-  
-    return (
-      <div className="accordion">
-        {questionButtons.map((button, index) => (
-          <div key={index}>
-            <button
-              className={`question-button ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => handleClick(index)}
-            >
-              {button.label}
-            </button>
-            <div
-              className="panel"
-              style={{
-                display: activeIndex === index ? 'block' : 'none',
-                maxHeight: activeIndex === index ? `${document.getElementById(`panel-${index}`).scrollHeight}px` : '0',
-                overflow: 'hidden',
-                transition: 'max-height 0.3s ease-out'
-              }}
-              id={`panel-${index}`}
-            >
-              {button.content}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
 const Faq = () => {
     const [accordions, setAccordions] = useState ([])
 
