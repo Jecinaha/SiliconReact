@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="wrapper">
-      <div className="">
+      <div>
       <Header />
           </div>
       <main>

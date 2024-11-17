@@ -4,7 +4,10 @@ function Address() {
   return (
     <div className="addresses">
 
-        <h2> Medical Center 1</h2>
+
+
+       <div className="addresses">
+       <h2> Medical Center 1</h2>
         <div className="informations">
             <i className="icon fa-light fa-location-dot"></i>
             <p className="info">2464 Royal Ln. Mesa,New Jersey 45463</p> 
@@ -20,7 +23,9 @@ function Address() {
                 <p>Sat – Sun: 9:00 am – 20:00 am</p>
             </div>
         </div>
+       </div>
 
+        <div className="addresses">
         <h2> Medical Center 2</h2>
         <div className="informations">
             <i className="icon fa-light fa-location-dot"></i>
@@ -38,6 +43,10 @@ function Address() {
             </div>
         </div>
     </div>
+
+        </div>
+
+
 
   )
 }
