@@ -7,7 +7,7 @@ import Youtube from '../assets/images/SocialMedia/youtube.svg'
 
 function SocialMedia() {
   return (
-    <div className="social-media">
+    <div className="social-media addresses">
 
         <Link to="https://www.facebook.com/Login/">
         <img className="media" src={Facebook} alt="Facebook"/>

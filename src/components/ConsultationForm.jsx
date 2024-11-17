@@ -26,13 +26,13 @@ function ConsultationForm() {
 
 
       const newErrors = {}
-      object.keys(formData).forEach(field => {
+      Object.keys(formData).forEach(field => {
         if (formData[field].trim() === '') {
           newErrors[field] = 'This field is requiered.'
         }
       })
 
-      if (object.keys(newErrors).length > 0) {
+      if (Object.keys(newErrors).length > 0) {
         setErrors(newErrors)
         return
       }
@@ -89,9 +89,9 @@ function ConsultationForm() {
             <label htmlFor='specialist' className='form-label'>Specialist</label>
             <select type="text" name="specialist" className='select-input form-input' value={formData.specialist} onChange={handleChange} required placeholder='Specialist'>
                 <option value={"...."}>....</option>
-                <option value={"Engineer"}>Engineer</option> 
-                <option value={"Doctor"}>Doctor</option>
+                <option value={"Customer-service"}>customer service</option>
                 <option value={"Developer"}>Develper</option>
+                <option value={"Engineer"}>Engineer</option> 
             </select>
             <span className='error'>{errors.specialist && errors.specialist}</span>
         </div>

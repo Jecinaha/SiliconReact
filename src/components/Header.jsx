@@ -35,7 +35,7 @@ const Header = () => {
         
 
 
-            <Link id="signinup" to="/SignIn" className="btn btn-primary" onClick={<Sign-In />}>
+            <Link id="signinup" to="/Sign-In" className="btn btn-primary" onClick={<Sign-In />}>
             <i className="fa-thin fa-user"></i>
             <span className="span-btn">Sign in / up</span></Link>
 

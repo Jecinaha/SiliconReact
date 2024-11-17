@@ -33,6 +33,8 @@ const SignIn = () => {
   };
 
   return (
+    <div>
+
     <div id="sign" className="sign-in-form">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
@@ -60,12 +62,16 @@ const SignIn = () => {
           />
         </div>
 
-        {/* Display error message if validation fails */}
         {error && <div className="error-message">{error}</div>}
 
         <button type="submit" className="submit-btn">Sign In</button>
       </form>
     </div>
+    <main>
+      <div className='none'></div>
+
+    </main>
+  </div>
   );
 };
 
