@@ -33,7 +33,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-form">
+    <div id="sign" className="sign-in-form">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

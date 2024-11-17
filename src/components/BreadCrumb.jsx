@@ -6,7 +6,7 @@ const BreadCrumb = () => {
     const pathnames = location.pathname.split('/').filter((x) => x);
 
     return (
-        <section className="page-title">
+        <section id="breadcrumb" className="page-title">
             <div className="container">
                 
                 <ul className="Breadcrumb">

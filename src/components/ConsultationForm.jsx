@@ -1,84 +1,105 @@
 import React, { useState } from 'react'
 
 function ConsultationForm() {
-    const [fullName, setFullName] = useState();
-    const [errorMessage, setErrorMessage] = useState("");
+    const [formData, setFormData] = useState({name: '', email: '', specialist:''})
+    const [errors, setErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
 
-    function onFullNameChanged(event) {
-        setFullName(event.target.value);
+    const handleChange = (e) => {
+      const { name, value } = e.target
+      setFormData({...formData, [name]: value})
+
+      if (value.trim() === '') {
+        setErrors(prevErrors => ({...prevErrors, [name]: 'This field is requiered.'}))
+      } else {
+        setErrors(prevErrors => ({...prevErrors, [name]: ''}))
+      }
+
     }
 
-    function onEmailChanged(event) {
-      // kolla ifall email är giltigt värde
-      // sätt felmeddelande ifall ogiltig
+    const handleOk = () => {
+      setSubmitted(false)
     }
 
-    async function submit() {
-        const requestData = {
-            fullName: fullName
-        };
-        console.log(requestData);
+    const handleSubmit = async (e) => {
+      e.preventDefault()
 
-        try {
-          await fetch("", {
-            method: "POST", 
-            body: JSON.stringify(requestData)})
-            // kom den hit gick det bra
-        } catch(e) {
-          // Sätt felmeddelande
+
+      const newErrors = {}
+      object.keys(formData).forEach(field => {
+        if (formData[field].trim() === '') {
+          newErrors[field] = 'This field is requiered.'
         }
+      })
+
+      if (object.keys(newErrors).length > 0) {
+        setErrors(newErrors)
+        return
+      }
+
+      const res = await fetch['https://win24-assignment.azurewebsites.net/api/forms/contact', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }]
+
+      if (res.ok) {
+        setSubmitted(true)
+        setFormData({name: '', email: '', specialist: ''})
+      
+      }
+
     }
+
+    if (submitted) {
+      return (
+        <div className='informationbox'>
+          <h1>Tack!</h1>
+          <p>Vi kommer återkomma till dig så snart vi kan.</p>
+          <button className='btn-green' onClick={handleOk}>OK</button>
+        </div>
+      )
+    }
+
+
 
   return (
-    <form id='conForm' className='con-form'>
+    <div className='form-container'>
+    <form onSubmit={handleSubmit} id='conForm' className='con-form' noValidate>
       <div className='header'>
         <h2>Get Online Consultation</h2>
       </div>
 
       <div className='body'>
-        <div className='formgroup'>
+        <div className='form-group'>
             <label htmlFor='fullName' className='form-label'>Full name</label>
-            <input type="text" id='fullName' className='form-input' onChange={onFullNameChanged}/>
+            <input type="text" name="name" className='form-input' value={formData.name} onChange={handleChange} required placeholder='Name'/>
+            <span className='error'>{errors.name && errors.name}</span>
         </div>
 
-        <div className='formgroup'>
+        <div className='form-group'>
             <label htmlFor='emailAddress' className='form-label'>Email address</label>
-            <input type="email" id='emailAdress' className='form-input'/>
+            <input type="email" name="email" className='form-input' value={formData.email} onChange={handleChange}  required placeholder='Email'/>
+            <span className='error'>{errors.email && errors.email}</span>
         </div>
 
-        <div className='formgroup'>
+        <div className='form-group'>
             <label htmlFor='specialist' className='form-label'>Specialist</label>
-            <select type="text" id='specialist' className='form-input'>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
-                <option value={"Engineer"}>Engineer</option>
+            <select type="text" name="specialist" className='select-input form-input' value={formData.specialist} onChange={handleChange} required placeholder='Specialist'>
+                <option value={"...."}>....</option>
+                <option value={"Engineer"}>Engineer</option> 
+                <option value={"Doctor"}>Doctor</option>
+                <option value={"Developer"}>Develper</option>
             </select>
+            <span className='error'>{errors.specialist && errors.specialist}</span>
         </div>
-
-        <button type='button' className='btn' onClick={submit}>Make an appointment</button>
-
-
+        <button type='submit' className='btn'>Make an appointment</button>
       </div>
-
     </form>
+    </div>
   )
 }
 
 export default ConsultationForm
-
-
-
-// const regForm = document.querySelector('#regForm');
-
-// regForm.addEventListener('submit' , e => {
-//     e.preventDefault()
-
-//     const user = {}
-
-//     console.log(user)
-// })

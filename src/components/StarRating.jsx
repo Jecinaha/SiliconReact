@@ -10,13 +10,13 @@ const StarRating = ({starRating}) => {
 
         {
             [...Array(filledStars)].map((_, index) => (
-                <i key={index} className="fa-shape fa-solid fa-star"></i>
+                <i key={index} className="filled-stars fa-shape fa-solid fa-star"></i>
             ))
         }
 
         {
             [...Array(emptyStars)].map((_, index) => (
-                <i key={index} className="fa-shape fa-regular fa-star"></i>
+                <i key={index} className="empty-stars fa-shape fa-regular fa-star"></i>
             ))
         }
     </div>

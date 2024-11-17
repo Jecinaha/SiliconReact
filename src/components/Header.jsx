@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import siliconLogo from '../assets/images/siliconlogo.svg'
 import { Link, NavLink } from 'react-router-dom'
 import DarkMode from '../components/DarkModeSwitch.jsx'
+import SignIn from './SignIn.jsx'
 
 
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [signIn, setSignIn] = useState(false);
 
- // function onButtonClicked
 
   return (
     <header>
@@ -32,10 +33,9 @@ const Header = () => {
             <DarkMode />
 
         
-            
-         
 
-            <Link id="signinup" to="/SignIn" className="btn btn-primary">
+
+            <Link id="signinup" to="/SignIn" className="btn btn-primary" onClick={<Sign-In />}>
             <i className="fa-thin fa-user"></i>
             <span className="span-btn">Sign in / up</span></Link>
 

@@ -34,15 +34,19 @@ const Faq = () => {
                 <div className="phone-question">
                     <img src={phone} alt="phone"/>
                     <p>Still have questions?</p>
-                    <a className="contact-phone" href="#">Contact us <i className="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <Link id="contact-link" to="/Contact" className="contact-phone">
+                    Contact us 
+                    <i className="fa-solid fa-arrow-right"></i>
+                    </Link>
                 </div>
 
                 <div className="message-question">
                     <img src={message} alt="message"/>
                     <p>Don't like phone calls?</p>
-                    <a className="contact-message" href="#">Contact us <i className="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <Link id="contact-link" to="/Contact" className="contact-message">
+                    Contact us 
+                    <i className="fa-solid fa-arrow-right"></i>
+                    </Link>
                 </div> 
             </div>
 
@@ -51,6 +55,7 @@ const Faq = () => {
                       accordions.map(item => (
                         <Questions key={item.id} item={item} />
                     ))
+
                 }
             </div>
         <button className="btn btn-contact-us"><Link className="contact-link" to="/Contact">Contact us now</Link></button>

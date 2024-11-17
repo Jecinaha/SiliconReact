@@ -3,6 +3,7 @@ import sendMoney from '../assets/images/sendmoney.svg'
 import Contacts from '../assets/images/contacts.svg'
 import Payments from './Payments'
 import MoneyText from './MoneyText'
+import { Link } from 'react-router-dom'
 
 
 const Money = () => {
@@ -30,8 +31,8 @@ const Money = () => {
                     } 
                 </ul>
               
-              <button className="btn btn-primary"> Learn More 
-                <i className="fa-solid fa-arrow-right"></i>
+              <button className="btn btn-primary"> <Link className='btn btn-primary' to="/Learn-More"> Learn More 
+                <i className="fa-solid fa-arrow-right"></i> </Link>
                 </button>
             </div>
             
@@ -50,10 +51,10 @@ const Money = () => {
                             payments.map((item, index) => (<Payments key={index} item={item} />))   
                         }
                     </ul>
+                    <button className='btn btn-primary'>
+                    <Link className='btn btn-primary' to="/Learn-More" >Learn More <i className="fa-solid fa-arrow-right"></i></Link>
+                    </button>
                     
-                    <button className="btn btn-primary"> Learn More 
-                        <i className="fa-solid fa-arrow-right"></i>
-                        </button>
                 </div>
         </div>
     </div>
